@@ -75,26 +75,7 @@ export async function getRestaurants(db = db, filters = {}) {
 }
 
 export function getRestaurantsSnapshot(cb, filters = {}) {
-  if (typeof cb !== "function") {
-    console.log("Error: The callback parameter is not a function");
-    return;
-  }
-
-  let q = query(collection(db, "restaurants"));
-  q = applyQueryFilters(q, filters);
-
-  return onSnapshot(q, (querySnapshot) => {
-    const results = querySnapshot.docs.map((doc) => {
-      return {
-        id: doc.id,
-        ...doc.data(),
-        // Only plain objects can be passed to Client Components from Server Components
-        timestamp: doc.data().timestamp.toDate(),
-      };
-    });
-
-    cb(results);
-  });
+  return;
 }
 
 export async function getRestaurantById(db, restaurantId) {
